@@ -117,8 +117,8 @@ export const mapo = defineChain({
 
 export const ronin = defineChain({
   id: 2020,
-  name: "ronin",
-  network: "ronin",
+  name: "Ronin Mainnet",
+  network: "Ronin Mainnet",
   nativeCurrency: {
     decimals: 18,
     name: "RON",
