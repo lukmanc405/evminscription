@@ -111,24 +111,30 @@ export default function Home() {
 
   const run = useCallback(() => {
     if (privateKeys.length === 0) {
-      pushLog("No private keys", "error");
+      pushLog("no private key", "error");
       setRunning(false);
       return;
     }
 
     if (radio === "manyToOne" && !toAddress) {
-      pushLog("No destination address", "error");
+      pushLog("No address", "error");
       setRunning(false);
       return;
     }
+
+    // if (!inscription) {
+    //   setLogs((logs) => [handleLog("没有铭文", "error"), ...logs]);
+    //   setRunning(false);
+    //   return;
+    // }
 
     setRunning(true);
   }, [privateKeys.length, pushLog, radio, toAddress]);
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex flex-col gap-2">
-        <span>Chain (Select the chain for inscription):</span>
+    <div className=" flex flex-col gap-4">
+      <div className=" flex flex-col gap-2">
+        <span>Chain (select the chain to be inscribed):</span>
         <TextField
           select
           defaultValue="eth"
@@ -140,20 +146,23 @@ export default function Home() {
           }}
         >
           {Object.entries(inscriptionChains).map(([key, chain]) => (
-            <MenuItem key={chain.id} value={key}>
+            <MenuItem
+              key={chain.id}
+              value={key}
+            >
               {chain.name}
             </MenuItem>
           ))}
         </TextField>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <span>Private Keys (Required, one per line):</span>
+      <div className=" flex flex-col gap-2">
+        <span>Private key (required, one per line):</span>
         <TextField
           multiline
           minRows={2}
           size="small"
-          placeholder="Private keys, with or without 0x, the program will handle it automatically"
+          placeholder="Private key, with or without 0x, the program will handle it automatically"
           disabled={running}
           onChange={(e) => {
             const text = e.target.value;
@@ -185,23 +194,23 @@ export default function Home() {
         <FormControlLabel
           value="meToMe"
           control={<Radio />}
-          label="Self"
+          label="自转"
           disabled={running}
         />
         <FormControlLabel
           value="manyToOne"
           control={<Radio />}
-          label="Many to One"
+          label="多转一"
           disabled={running}
         />
       </RadioGroup>
 
       {radio === "manyToOne" && (
-        <div className="flex flex-col gap-2">
-          <span>Destination Address (Required):</span>
+        <div className=" flex flex-col gap-2">
+          <span>Address to whom to forward (required):</span>
           <TextField
             size="small"
-            placeholder="Address"
+            placeholder="地址"
             disabled={running}
             onChange={(e) => {
               const text = e.target.value;
@@ -211,5 +220,107 @@ export default function Home() {
         </div>
       )}
 
-      <div className="flex flex-col gap-2">
-        <span>Inscription (Optional, origin
+      <div className=" flex flex-col gap-2">
+        <span>Inscription (optional, original inscription, not transcoded hexadecimal):</span>
+        <TextField
+          size="small"
+          placeholder={`Inscription, don’t enter it wrong, please check again, example:\n${example}`}
+          disabled={running}
+          onChange={(e) => {
+            const text = e.target.value;
+            setInscription(text.trim());
+          }}
+        />
+      </div>
+
+      <div className=" flex flex-col gap-2">
+        <span>
+          RPC (Optional, by default the public one has bottlenecks and often fails. It is best to use a paid one, either http or wss):
+        </span>
+        <TextField
+          size="small"
+          placeholder="RPC"
+          disabled={running}
+          onChange={(e) => {
+            const text = e.target.value;
+            setRpc(text);
+          }}
+        />
+      </div>
+
+      <RadioGroup
+        row
+        defaultValue="tip"
+        onChange={(e) => {
+          const value = e.target.value as GasRadio;
+          setGasRadio(value);
+        }}
+      >
+        <FormControlLabel
+          value="tip"
+          control={<Radio />}
+          label="Extra miner tip"
+          disabled={running}
+        />
+        <FormControlLabel
+          value="all"
+          control={<Radio />}
+          label="总 gas"
+          disabled={running}
+        />
+      </RadioGroup>
+
+      <div className=" flex flex-col gap-2">
+        <span>{gasRadio === "tip" ? "Extra Miner Tips" : "Total gas"} (选填):</span>
+        <TextField
+          type="number"
+          size="small"
+          placeholder={`${
+            gasRadio === "tip" ? "Default 0" : "Default latest"
+          }, unit gwei, example: 10`}
+          disabled={running}
+          onChange={(e) => {
+            const num = Number(e.target.value);
+            !Number.isNaN(num) && num >= 0 && setGas(num);
+          }}
+        />
+      </div>
+
+      <div className=" flex flex-col gap-2">
+        <span>Time between each transaction (optional, minimum 0 ms):</span>
+        <TextField
+          type="number"
+          size="small"
+          placeholder="默认 0 ms"
+          disabled={running}
+          onChange={(e) => {
+            const num = Number(e.target.value);
+            !Number.isNaN(num) && num >= 0 && setDelay(num);
+          }}
+        />
+      </div>
+
+      <Button
+        variant="contained"
+        color={running ? "error" : "success"}
+        onClick={() => {
+          if (!running) {
+            run();
+          } else {
+            setRunning(false);
+          }
+        }}
+      >
+        {running ? "Running" : "Running"}
+      </Button>
+
+      <Log
+        title={`Log (number of successes => ${successCount}）:`}
+        logs={logs}
+        onClear={() => {
+          setLogs([]);
+        }}
+      />
+    </div>
+  );
+}
