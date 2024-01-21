@@ -3,21 +3,21 @@
   
   export default function Media() {
     const mediaList = [
-    //   {
-    //     title: "code",
-    //     linkText: "Github",
-    //     link: "https://github.com/vectorisvector/inscription",
-    //   },
-    //   {
-    //     title: "Developer",
-    //     linkText: "@cybervector_",
-    //     link: "https://twitter.com/cybervector_",
-    //   },
-    //   {
-    //     title: "Alpha",
-    //     linkText: "@ChaunceyCrypto",
-    //     link: "https://twitter.com/ChaunceyCrypto",
-    //   },
+      {
+        title: "code",
+        linkText: "Github",
+        link: "https://github.com/vectorisvector/inscription",
+      },
+      {
+        title: "Developer",
+        linkText: "@cybervector_",
+        link: "https://twitter.com/cybervector_",
+      },
+      {
+        title: "Alpha",
+        linkText: "@ChaunceyCrypto",
+        link: "https://twitter.com/ChaunceyCrypto",
+      },
     ];
   
     if (mediaList.length === 0) {
