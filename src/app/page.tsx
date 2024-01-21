@@ -271,7 +271,7 @@ export default function Home() {
       </RadioGroup>
 
       <div className=" flex flex-col gap-2">
-        <span>{gasRadio === "tip" ? "Extra Miner Tips" : "Total gas"} (选填):</span>
+        <span>{gasRadio === "tip" ? "Extra Miner Tips" : "Total gas"} (Optional):</span>
         <TextField
           type="number"
           size="small"

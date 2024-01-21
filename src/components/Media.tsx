@@ -1,24 +1,24 @@
 import { Box } from "@mui/material";
 import Link from "next/link";
 
-export default function Media() {
-  const mediaList = [
-    {
-      title: "code",
-      linkText: "Github",
-      link: "https://github.com/vectorisvector/inscription",
-    },
-    {
-      title: "Developer",
-      linkText: "@cybervector_",
-      link: "https://twitter.com/cybervector_",
-    },
-    {
-      title: "Alpha",
-      linkText: "@ChaunceyCrypto",
-      link: "https://twitter.com/ChaunceyCrypto",
-    },
-  ];
+// export default function Media() {
+//   const mediaList = [
+//     {
+//       title: "code",
+//       linkText: "Github",
+//       link: "https://github.com/vectorisvector/inscription",
+//     },
+//     {
+//       title: "Developer",
+//       linkText: "@cybervector_",
+//       link: "https://twitter.com/cybervector_",
+//     },
+//     {
+//       title: "Alpha",
+//       linkText: "@ChaunceyCrypto",
+//       link: "https://twitter.com/ChaunceyCrypto",
+//     },
+//   ];
 
   return (
     <div className=" py-4">
