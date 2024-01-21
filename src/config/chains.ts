@@ -137,6 +137,28 @@ export const ronin = defineChain({
   },
 });
 
+export const goerli = defineChain({
+  id: 5,
+  name: "Gerli Testnet",
+  network: "Goerli Testnet",
+  nativeCurrency: {
+    decimals: 18,
+    name: "gETH",
+    symbol: "gETH",
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://goerli.infura.io/v3"],
+    },
+    public: {
+      http: ["https://goerli.infura.io/v3"],
+    },
+  },
+  blockExplorers: {
+    default: { name: "Explorer", url: "https://goerli.etherscan.io" },
+  },
+});
+
 export const inscriptionChains = {
   eth: mainnet,
   bsc,
@@ -168,6 +190,7 @@ export const inscriptionChains = {
   shibarium,
   sepolia,
   ronin,
+  goerli,
 };
 
 export type ChainKey = keyof typeof inscriptionChains;
