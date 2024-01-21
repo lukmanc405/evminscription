@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import Link from "next/link";
 
 export default function Media() {
-  // const mediaList = [
+  const mediaList = [
   //   {
   //     title: "code",
   //     linkText: "Github",
@@ -18,7 +18,7 @@ export default function Media() {
   //     linkText: "@ChaunceyCrypto",
   //     link: "https://twitter.com/ChaunceyCrypto",
   //   },
-  // ];
+  ];
 
   return (
     <div className=" py-4">
