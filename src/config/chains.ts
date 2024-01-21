@@ -139,7 +139,7 @@ export const ronin = defineChain({
 
 export const goerli = defineChain({
   id: 5,
-  name: "Gerli Testnet",
+  name: "Georli Testnet",
   network: "Goerli Testnet",
   nativeCurrency: {
     decimals: 18,
