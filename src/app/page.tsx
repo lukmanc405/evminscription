@@ -194,13 +194,13 @@ export default function Home() {
         <FormControlLabel
           value="meToMe"
           control={<Radio />}
-          label="自转"
+          label="rotation"
           disabled={running}
         />
         <FormControlLabel
           value="manyToOne"
           control={<Radio />}
-          label="多转一"
+          label="Turn one more"
           disabled={running}
         />
       </RadioGroup>
@@ -210,7 +210,7 @@ export default function Home() {
           <span>Address to whom to forward (required):</span>
           <TextField
             size="small"
-            placeholder="地址"
+            placeholder="address"
             disabled={running}
             onChange={(e) => {
               const text = e.target.value;
@@ -265,7 +265,7 @@ export default function Home() {
         <FormControlLabel
           value="all"
           control={<Radio />}
-          label="总 gas"
+          label="total gas"
           disabled={running}
         />
       </RadioGroup>
@@ -291,7 +291,7 @@ export default function Home() {
         <TextField
           type="number"
           size="small"
-          placeholder="默认 0 ms"
+          placeholder="default 0 ms"
           disabled={running}
           onChange={(e) => {
             const num = Number(e.target.value);
